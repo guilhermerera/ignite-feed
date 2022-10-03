@@ -1,8 +1,8 @@
+## ⚠️ WORK IN PROGRESS ⚠️
+
 # 🚀 Ignite 2022 - Project 01: Ignite Feed
 
 ### This project was created alongside the teacher on the first module of the new Rocketseat's Ignite 2022 ReactJS Track.
-
-###
 
 <br><br>
 
@@ -14,7 +14,7 @@
 
 # 🔎 Live View
 
-- [Live Site Link](https://01-ignite-feed-94msz7sjo-guilhermerera.vercel.app/)
+- [Live Site Link](https://01-ignite-feed.vercel.app)
 
 <br>
 
