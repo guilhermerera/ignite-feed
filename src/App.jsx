@@ -3,6 +3,7 @@ import { Sidebar } from "./components/Sidebar";
 import { Post } from "./components/Post";
 import "./global.css";
 import styles from "./App.module.css";
+import { posts } from "./dummydata/posts";
 
 export function App() {
 	return (
@@ -11,8 +12,16 @@ export function App() {
 			<div className={styles.wrapper}>
 				<Sidebar />
 				<main>
-					<Post author='Guilherme Ferreira' content='Lueco és pueco manitoo' />
-					<Post author='Guilherme Ferreira' content='Lueco és pueco manitoo' />
+					{posts.map((post) => {
+						return (
+							<Post
+								key={post.id}
+								author={post.author}
+								content={post.content}
+								publishedAt={post.publishedAt}
+							/>
+						);
+					})}
 				</main>
 			</div>
 		</>

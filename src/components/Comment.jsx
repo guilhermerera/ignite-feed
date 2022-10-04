@@ -3,7 +3,7 @@ import styles from "./Comment.module.css";
 
 import Avatar from "./Avatar";
 
-export default function Comment() {
+export default function Comment({ content }) {
 	return (
 		<div className={styles.comment}>
 			<Avatar noBorder src='https://github.com/guilhermerera.png' />
@@ -20,7 +20,7 @@ export default function Comment() {
 							<Trash size={24} />
 						</button>
 					</header>
-					<p>Muito bom parça!</p>
+					<p>{content}</p>
 				</div>
 				<footer>
 					<button>
