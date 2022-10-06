@@ -73,6 +73,10 @@
 	cursor: pointer;
 }
 
+.commentBox footer button.kudos-given {
+	color: var(--green-700);
+}
+
 .commentBox footer button:hover {
 	color: var(--green-500);
 }

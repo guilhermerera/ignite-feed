@@ -1,9 +1,22 @@
 import { ThumbsUp, Trash } from "phosphor-react";
+import { useState } from "react";
 import styles from "./Comment.module.css";
-
 import Avatar from "./Avatar";
 
-export default function Comment({ content }) {
+export default function Comment({ content, onDeleteComment }) {
+	const [kudosCount, setKudosCount] = useState(0);
+	const [wasKudosGiven, setWasKudosGiven] = useState(false);
+
+	function handleDeleteComment() {
+		onDeleteComment(content);
+	}
+
+	function handleGiveKudos() {
+		const newKudosCount = wasKudosGiven ? kudosCount - 1 : kudosCount + 1;
+		setWasKudosGiven((prev) => !prev);
+		setKudosCount(newKudosCount);
+	}
+
 	return (
 		<div className={styles.comment}>
 			<Avatar noBorder src='https://github.com/guilhermerera.png' />
@@ -16,17 +29,19 @@ export default function Comment({ content }) {
 								Cerca de 1h atrás
 							</time>
 						</div>
-						<button title='Deletar comentário'>
+						<button onClick={handleDeleteComment} title='Deletar comentário'>
 							<Trash size={24} />
 						</button>
 					</header>
 					<p>{content}</p>
 				</div>
 				<footer>
-					<button>
+					<button
+						className={wasKudosGiven && styles["kudos-given"]}
+						onClick={handleGiveKudos}>
 						<ThumbsUp />
-						Aplaudir
-						<span>20</span>
+						Kudos
+						<span>{kudosCount}</span>
 					</button>
 				</footer>
 			</div>
