@@ -1,4 +1,6 @@
 import { ThumbsUp, Trash } from "phosphor-react";
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import { useState } from "react";
 import styles from "./Comment.module.css";
 import Avatar from "./Avatar";
@@ -6,6 +8,19 @@ import Avatar from "./Avatar";
 export default function Comment({ content, onDeleteComment }) {
 	const [kudosCount, setKudosCount] = useState(0);
 	const [wasKudosGiven, setWasKudosGiven] = useState(false);
+
+	const publishedAt = new Date();
+
+	const formatedPublishedDate = format(
+		publishedAt,
+		"d 'de' LLLL 'às' HH:mm'h'",
+		{ locale: ptBR }
+	);
+
+	const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+		locale: ptBR,
+		addSuffix: true
+	});
 
 	function handleDeleteComment() {
 		onDeleteComment(content);
@@ -19,14 +34,19 @@ export default function Comment({ content, onDeleteComment }) {
 
 	return (
 		<div className={styles.comment}>
-			<Avatar noBorder src='https://github.com/guilhermerera.png' />
+			<Avatar
+				noBorder
+				src='https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png'
+			/>
 			<div className={styles.commentBox}>
 				<div className={styles.commentContent}>
 					<header>
 						<div className={styles.authorAndTime}>
-							<strong>Guilherme Ferreira</strong>
-							<time time='11 de maio às 08:13h' dateTime='2202-05-11 08:13:30'>
-								Cerca de 1h atrás
+							<strong>You</strong>
+							<time
+								title={formatedPublishedDate}
+								dateTime={publishedAt.toISOString()}>
+								{publishedDateRelativeToNow}
 							</time>
 						</div>
 						<button onClick={handleDeleteComment} title='Deletar comentário'>
