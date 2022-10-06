@@ -1,7 +1,7 @@
 #### ⚠️ WORK IN PROGRESS ⚠️
 [![Linkedin Badge](https://img.shields.io/badge/-guilhermerera-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilhermerera/)](https://www.linkedin.com/in/guilhermerera/) 
 [![Gmail Badge](https://img.shields.io/badge/-hello@rera.dev-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:hello@rera.dev)](mailto:hello@rera.dev)
-### 🚀 Ignite 2022 - Project 01: Ignite Feed
+### 🚀 React JS Ignite 2022 - Project 01: Ignite Feed
 
 ##### This project was created alongside the teacher on the first module of the new Rocketseat's Ignite 2022 ReactJS Track.
 
