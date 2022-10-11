@@ -5,7 +5,13 @@ import { useState } from "react";
 import styles from "./Comment.module.css";
 import Avatar from "./Avatar";
 
-export default function Comment({ content, onDeleteComment }) {
+interface CommentProps {
+	content: string;
+	onDeleteComment: (param: string) => void;
+}
+
+export default function Comment(props: CommentProps) {
+	const { content, onDeleteComment } = props;
 	const [kudosCount, setKudosCount] = useState(0);
 	const [wasKudosGiven, setWasKudosGiven] = useState(false);
 
@@ -57,7 +63,7 @@ export default function Comment({ content, onDeleteComment }) {
 				</div>
 				<footer>
 					<button
-						className={wasKudosGiven && styles["kudos-given"]}
+						className={wasKudosGiven ? styles["kudos-given"] : ""}
 						onClick={handleGiveKudos}>
 						<ThumbsUp />
 						Kudos

@@ -1,12 +1,32 @@
 import { format, formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent, InvalidEvent } from "react";
 import Avatar from "./Avatar";
 import Comment from "./Comment";
 import styles from "./Post.module.css";
 
-export function Post({ author, content, publishedAt }) {
-	const [comments, setComments] = useState([]);
+interface Author {
+	avatarUrl: string;
+	name: string;
+	role: string;
+}
+
+interface Content {
+	type: "paragraph" | "link";
+	contentText: string;
+	url: string;
+}
+
+interface PostProps {
+	id: number;
+	author: Author;
+	publishedAt: Date;
+	content: Content[];
+}
+
+export function Post(props: PostProps) {
+	const { author, content, publishedAt } = props;
+	const [comments, setComments] = useState<string[]>([]);
 	const [newCommentText, setNewCommentText] = useState("");
 
 	const formatedPublishedDate = format(
@@ -20,23 +40,28 @@ export function Post({ author, content, publishedAt }) {
 		addSuffix: true
 	});
 
-	function handleCreateNewComment(e) {
+	function handleCreateNewComment(e: FormEvent) {
 		e.preventDefault();
 
 		setComments([...comments, newCommentText]);
 		setNewCommentText("");
 	}
 
-	function deleteComment(commentToDelete) {
+	function handleNewCommentChange(e: ChangeEvent<HTMLTextAreaElement>) {
+		e.target.setCustomValidity("");
+		setNewCommentText(e.target.value);
+	}
+
+	function handleNewInvalidComment(e: InvalidEvent<HTMLTextAreaElement>) {
+		e.target.setCustomValidity("Por favor, insira um comentário.");
+	}
+
+	function deleteComment(commentToDelete: string) {
 		const commentsWithoutCommentToDelete = comments.filter(
 			(comment) => comment != commentToDelete
 		);
 
 		setComments(commentsWithoutCommentToDelete);
-	}
-
-	function handleNewInvalidComment() {
-		event.target.setCustomValidity("Por favor, insira um comentário.");
 	}
 
 	const isNewCommentEmpty = newCommentText.length === 0;
@@ -62,12 +87,12 @@ export function Post({ author, content, publishedAt }) {
 				{content.map((line) => {
 					switch (line.type) {
 						case "paragraph":
-							return <p key={line.content}>{line.content}</p>;
+							return <p key={line.contentText}>{line.contentText}</p>;
 						case "link":
 							return (
-								<p key={line.content}>
+								<p key={line.contentText}>
 									<a href={line.url} target='_blank'>
-										{line.content}
+										{line.contentText}
 									</a>
 								</p>
 							);
@@ -83,10 +108,7 @@ export function Post({ author, content, publishedAt }) {
 				<strong>Deixe seu comentário</strong>
 				<textarea
 					value={newCommentText}
-					onChange={(e) => {
-						e.target.setCustomValidity("");
-						setNewCommentText(e.target.value);
-					}}
+					onChange={handleNewCommentChange}
 					placeholder='Deixe um comentário'
 					onInvalid={handleNewInvalidComment}
 					required

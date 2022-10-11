@@ -10,25 +10,25 @@ export const posts = [
 			{ type: "paragraph", content: "Fala galeraa 👋" },
 			{
 				type: "paragraph",
-				content:
+				contentText:
 					"Só pra contar que to fazendo o Ignite da Rocketseat. Esse é o primeiro	projeto do Bootcamp de ReactJS, usado durante as aulas para fortalecer conceitos base da biblioteca, como componentização, uso de propriedades, css modules, iterações, alguns hooks e também alguns conceitos de programação, como a programação declarativa e	imutabilidade."
 			},
 			{
 				type: "paragraph",
-				content:
+				contentText:
 					"Sempre bom fortalecer o alicerce antes de construir o segundo andar.;)"
 			},
 			{
 				type: "paragraph",
-				content: "Você vai poder conferir a evolução no meu github."
+				contentText: "Você vai poder conferir a evolução no meu github."
 			},
 			{
 				type: "link",
 				url: "https://github.com/guilhermerera",
-				content: "Clique aqui."
+				contentText: "Clique aqui."
 			}
 		],
-		publishedAt: new Date("2022-10-03 13:48")
+		publishedAt: new Date("2022-10-5 13:48")
 	},
 	{
 		id: 2,
@@ -50,6 +50,6 @@ export const posts = [
 					"Deleniti esse explicabo vel similique cumque. Deleniti eaque doloribus autem. Ad dolores, amet perferendis nisi odio voluptatum! Inventore?"
 			}
 		],
-		publishedAt: new Date("2022-09-20 19:22")
+		publishedAt: new Date("2022-10-9 19:22")
 	}
 ];
