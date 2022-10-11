@@ -9,11 +9,11 @@
 
 <br>
 
-<!-- ### 💻 Screenshots
+### 💻 Screenshots
 
-![](./images/screenshot/screenshot.png)
+![](./src/assets/images/screenshot/screenshot.png)
 
-<br> -->
+<br>
 
 ### 🔎 Live View
 
