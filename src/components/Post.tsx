@@ -12,16 +12,16 @@ interface Author {
 }
 
 interface Content {
-	type: "paragraph" | "link";
+	contentType: string;
 	contentText: string;
-	url: string;
+	url?: string;
 }
 
 interface PostProps {
 	id: number;
 	author: Author;
-	publishedAt: Date;
 	content: Content[];
+	publishedAt: Date;
 }
 
 export function Post(props: PostProps) {
@@ -85,7 +85,7 @@ export function Post(props: PostProps) {
 
 			<div className={styles.content}>
 				{content.map((line) => {
-					switch (line.type) {
+					switch (line.contentType) {
 						case "paragraph":
 							return <p key={line.contentText}>{line.contentText}</p>;
 						case "link":
